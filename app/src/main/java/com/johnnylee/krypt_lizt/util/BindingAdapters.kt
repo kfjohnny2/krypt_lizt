@@ -1,15 +1,16 @@
-package com.johnnylee.krypt_lizt
+package com.johnnylee.krypt_lizt.util
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.databinding.BindingAdapter
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.pablito.pablito.utils.extension.getParentActivity
+import com.johnnylee.krypt_lizt.util.helpers.AdapterItemsContract
 
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
@@ -20,7 +21,7 @@ fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
 }
 
 @BindingAdapter("mutableText")
-fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
+fun setMutableText(view: TextView, text: LiveData<String>?) {
     val parentActivity:AppCompatActivity? = view.getParentActivity()
     if(parentActivity != null && text != null) {
         text.observe(parentActivity, Observer { value -> view.text = value?:""})
@@ -52,6 +53,11 @@ fun setGlideSrc(view: ImageView, text: MutableLiveData<String>?) {
 }
 
 @BindingAdapter("adapter")
-fun setAdapter(view: androidx.recyclerview.widget.RecyclerView, adapter: androidx.recyclerview.widget.RecyclerView.Adapter<*>) {
-    view.adapter = adapter
+fun setAdapter(recyclerView: RecyclerView, items: List<Any>) {
+    recyclerView.adapter.let {
+        if (it is AdapterItemsContract) {
+            it.replaceItems(items)
+        }
+    }
+
 }

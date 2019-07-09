@@ -1,4 +1,5 @@
 package com.johnnylee.krypt_lizt.base.model
 
-class Data {
-}
+import com.johnnylee.krypt_lizt.model.Market
+
+data class Data (val data: List<Market>)

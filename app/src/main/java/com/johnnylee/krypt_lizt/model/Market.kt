@@ -1,5 +1,3 @@
 package com.johnnylee.krypt_lizt.model
 
-class Market {
-
-}
+data class Market(val baseSymbol: String)
