@@ -25,7 +25,7 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    internal fun provideMarketApi(retrofit: Retrofit): MarketApi{
+    internal fun provideMarketApi(retrofit: Retrofit): MarketApi {
         return retrofit.create(MarketApi::class.java)
     }
 
@@ -51,7 +51,7 @@ object NetworkModule {
         httpClient.connectTimeout(230, TimeUnit.SECONDS)
 
         //INTERCEPTORS
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             httpClient.addInterceptor(logging)
         }
 
