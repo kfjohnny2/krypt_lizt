@@ -8,8 +8,8 @@ On this project was used MVVM with dependecy injection using Dagger2, Retrofit f
 
 ### Library utilization:
     1. MVVM Architecture
-    2. Dagger2 (2.16)
-    3. Coroutines (1.2.1)
-    4. Lifecycle (2.2.0-alpha02)
+    2. Hilt (Dependency Injection)
+    3. Coroutines
+    4. Lifecycle
     5. AndroidX
-    6. Retrofit (2.6.0)
+    6. Retrofit

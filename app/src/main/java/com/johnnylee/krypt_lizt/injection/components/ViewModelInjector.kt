@@ -1,7 +1,9 @@
 package com.johnnylee.krypt_lizt.injection.components
 
+import android.content.Context
 import com.johnnylee.krypt_lizt.injection.modules.NetworkModule
 import com.johnnylee.krypt_lizt.ui.main.MainViewModel
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,10 +20,9 @@ interface ViewModelInjector {
      */
     fun inject(mainViewModel: MainViewModel)
 
-    @Component.Builder
-    interface Builder {
+    @Component.Factory
+    interface Factory {
 
-        fun build(): ViewModelInjector
-        fun networkModule(networkModule: NetworkModule): Builder
+        fun create(@BindsInstance networkModule: NetworkModule): ViewModelInjector
     }
 }

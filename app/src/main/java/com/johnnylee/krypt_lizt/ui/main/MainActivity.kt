@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.johnnylee.krypt_lizt.R
 import com.johnnylee.krypt_lizt.databinding.ActivityMainBinding
 import com.johnnylee.krypt_lizt.ui.main.adapter.MarketsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel by lazy {  ViewModelProviders.of(this).get(MainViewModel::class.java)}
