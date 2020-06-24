@@ -7,13 +7,18 @@ import com.johnnylee.krypt_lizt.network.MarketApi
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import okhttp3.Interceptor
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+
+// This module tells a Component which are its subcomponents
+// Install this module in Hilt-generated ViewModelInjector
+@InstallIn(ApplicationComponent::class)
 @Module
 object NetworkModule {
 
@@ -24,8 +29,7 @@ object NetworkModule {
      */
     @Provides
     @Reusable
-    @JvmStatic
-    internal fun provideMarketApi(retrofit: Retrofit): MarketApi{
+    internal fun provideMarketApi(retrofit: Retrofit): MarketApi {
         return retrofit.create(MarketApi::class.java)
     }
 
@@ -35,7 +39,6 @@ object NetworkModule {
      */
     @Provides
     @Reusable
-    @JvmStatic
     internal fun provideRetrofitInterface(): Retrofit {
         val gson = GsonBuilder()
             .setLenient()
@@ -51,7 +54,7 @@ object NetworkModule {
         httpClient.connectTimeout(230, TimeUnit.SECONDS)
 
         //INTERCEPTORS
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             httpClient.addInterceptor(logging)
         }
 

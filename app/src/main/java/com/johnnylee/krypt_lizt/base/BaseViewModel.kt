@@ -7,10 +7,7 @@ import com.johnnylee.krypt_lizt.injection.modules.NetworkModule
 import com.johnnylee.krypt_lizt.ui.main.MainViewModel
 
 open class BaseViewModel : ViewModel(){
-    private val injectorApi: ViewModelInjector = DaggerViewModelInjector
-        .builder()
-        .networkModule(NetworkModule)
-        .build()
+    private val injectorApi: ViewModelInjector = DaggerViewModelInjector.factory().create(NetworkModule)
 
     init {
         inject()
